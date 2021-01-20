@@ -1,14 +1,18 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-import {} from "./styles";
+import { Def, Main } from "./styles";
 
-export default (props) => {
+const Layout = (props) => {
   return (
-    <>
+    <Def>
       <Header />
-      {props.children}
+      <Main className="content">
+        {props.children}
+      </Main>
       <Footer />
-    </>
+    </Def>
   );
 };
+
+export default Layout;
