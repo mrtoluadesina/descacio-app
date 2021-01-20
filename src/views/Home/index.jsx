@@ -9,13 +9,15 @@ import Ministry from "../../components/Ministry";
 function Home() {
   const [loading, setLoading] = useState(false);
   const [ministries, setMinistries] = useState([]);
-  const [filtered, setFiltered] = useState([]);
+  const [filtered, setFiltered] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     setLoading(true);
     try {
       let ministriesInfo = localStorage.getItem("ministries");
       let data = JSON.parse(ministriesInfo).ministries;
+      console.log(data);
       setMinistries(data);
       setLoading(false);
     } catch (error) {
@@ -26,11 +28,12 @@ function Home() {
 
   const handleChange = (e) => {
     let search = e.target.value;
+    setSearchQuery(search);
+    const pattern = new RegExp(search, "i");
     let filteredItem = ministries.filter((ministry) =>
-      ministry.name.includes(search)
+      pattern.test(ministry.name)
     );
     setFiltered(filteredItem);
-    setMinistries(filteredItem);
   };
 
   return (
@@ -53,18 +56,15 @@ function Home() {
         <div className="container">
           {loading
             ? "I am loading"
-            : ministries && ministries.length
+            : !searchQuery
             ? ministries.map((ministry, index) => (
                 <Ministry key={index} data={ministry} />
               ))
-            : "No Ministries Found!"}
-          {loading
-            ? "I am loading"
             : filtered && filtered.length
             ? filtered.map((item, index) => (
                 <Ministry key={index} data={item} />
               ))
-            : "No Ministries Found!"}
+            : ""}
         </div>
       </Section>
     </Layout>
