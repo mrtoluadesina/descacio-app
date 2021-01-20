@@ -1,16 +1,24 @@
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Home from "./views/Home";
-import Admin from "./views/Admin";
+import { Suspense, lazy } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AppContext from "./store/DataContext";
+import NotFound from "./views/NotFound";
+
+const HomePage = lazy(() => import("./views/Home"));
+const UploadPage = lazy(() => import("./views/Admin"));
 
 function App() {
   return (
-    <Router>
-      <AppContext>
-        <Route exact path="/" component={Home} />
-        <Route path="/upload" component={Admin} />
-      </AppContext>
-    </Router>
+    <Suspense fallback="Loading...">
+      <Router>
+        <AppContext>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/upload" component={UploadPage} />
+            <Route path="*" component={NotFound} />
+          </Switch>
+        </AppContext>
+      </Router>
+    </Suspense>
   );
 }
 

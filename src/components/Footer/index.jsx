@@ -14,13 +14,13 @@ const Footer = (props) => {
           </p>
         </div>
         <div className="socials space-between">
-          <a href="" target="_blank">
+          <a href="/" target="_blank">
             Instagram
           </a>
-          <a href="" target="_blank">
+          <a href="/" target="_blank">
             LinkedIn
           </a>
-          <a href="" target="_blank">
+          <a href="/" target="_blank">
             Facebook
           </a>
         </div>
