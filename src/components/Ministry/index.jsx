@@ -21,8 +21,8 @@ const Ministry = ({ data }) => {
     <Card>
       <Heading>{data.name || "Ministry of Justice"}</Heading>
       <Minister>
-        <Name>Abubakar Malami</Name>
-        <Origin>KEBBI STATE</Origin>
+        <Name>{data.minister || "Unknown"}</Name>
+        <Origin>{data.origin} STATE</Origin>
       </Minister>
       {showInfo && (
         <Info className="info">
@@ -30,19 +30,22 @@ const Ministry = ({ data }) => {
             <div className="icon">
               <img src="assets/icons/location.png" alt="location" />
             </div>
-            <p className="text">
-              Federal Ministry of Justice, Federal Secretariat Towers (5th &
-              10th floors), Shehu Shagari Way, Central Abuja Federal Capital
-              Territory, Nigeria
-            </p>
+            <p className="text">{data.address || "Unknown"}</p>
           </div>
           <div className="row">
             <div className="icon">
               <img src="assets/icons/website.png" alt="website" />
             </div>
-            <a className="text" href="/">
-              www.justice.gov.ng
-            </a>
+            {data.website ? (
+              <a
+                className="text"
+                href={data.website}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {data.website}
+              </a>
+            ) : null}
           </div>
         </Info>
       )}
