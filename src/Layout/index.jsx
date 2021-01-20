@@ -1,17 +1,17 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-import { Def, Main } from "./styles";
+import { Def, Main, Wrapper } from "./styles";
 
 const Layout = (props) => {
   return (
-    <Def>
-      <Header />
-      <Main className="content">
-        {props.children}
-      </Main>
+    <Wrapper>
+      <Def>
+        <Header />
+        <Main className="content">{props.children}</Main>
+      </Def>
       <Footer />
-    </Def>
+    </Wrapper>
   );
 };
 

@@ -1,8 +1,9 @@
+import React from "react";
 import { InputBox } from "./styles";
 
-const Input = ({ handleChange }) => {
+const Input = React.forwardRef(({ handleChange }, ref) => {
   return (
-    <InputBox>
+    <InputBox ref={ref}>
       <div className="icon">
         <img src="assets/icons/search.png" alt="search" />
       </div>
@@ -13,6 +14,6 @@ const Input = ({ handleChange }) => {
       />
     </InputBox>
   );
-};
+});
 
 export default Input;

@@ -23,5 +23,7 @@ export const InputBox = Styled.div`
         border: 0;
         box-shadow: 0;
         outline: 0;
+        font-size: 14px;
+        background: transparent;
     }
 `;

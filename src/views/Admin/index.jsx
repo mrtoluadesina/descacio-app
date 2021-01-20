@@ -1,9 +1,11 @@
 import { useState } from "react";
 import Layout from "../../Layout";
+import { useAppContext } from "../../store/DataContext";
 
 const Admin = () => {
   const [loading, setLoading] = useState(false);
   const [numberOfMinistries, setNumberOfMinistries] = useState(0);
+  const appContext = useAppContext();
   const handleChange = (e) => {
     setLoading(true);
     const fileReader = new FileReader();
@@ -11,6 +13,7 @@ const Admin = () => {
     fileReader.onload = (e) => {
       setNumberOfMinistries(JSON.parse(e.target.result).ministries.length);
       localStorage.setItem("ministries", e.target.result);
+      appContext.updateMinistries(e.target.result.ministries);
     };
     setLoading(false);
   };
